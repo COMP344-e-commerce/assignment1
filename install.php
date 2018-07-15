@@ -34,8 +34,9 @@ if ($result->num_rows > 0) {
 
 //Initialise database structure
 $sql = file_get_contents('install.sql');
-$conn->query($sql);
+$conn->multi_query($sql);
 
+//Close connection
 $conn->close();
 ?>
 </body>
