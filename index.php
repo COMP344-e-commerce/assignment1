@@ -9,9 +9,7 @@ function myTest($a) {
     return $b + $a;
 }
 $name = "Darren";
-//echo "My name is ". $name. "<br>";
-//echo "My name is ". $name. "<br>";
-//echo "My name is ". $name. "<br>";
+echo "My name is ". $name. "<br>";
 echo myTest(5);
 ?>
 </body>
