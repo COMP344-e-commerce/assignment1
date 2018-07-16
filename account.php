@@ -1,4 +1,5 @@
 <html>
+<?php $title = "Account" ?>
 <?php include("head.php"); ?>
 <body>
 <?php include("navigation.php"); ?>
@@ -28,7 +29,7 @@
         <input type="submit" value="Register">
     </form>
 </div>
-<h1>Sign in</h1>
+<h1>Login</h1>
 <div>
     <form method="post" action="login.php" id="loginForm">
         <label>Email: </label>
