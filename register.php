@@ -15,9 +15,9 @@
         preg_match_all("/\d/", $newPassword, $numericChar);
         if (strlen($newPassword) < 6) {
             return "Does not have more than $minChar characters.";
-        } elseif (!count($firstChar[0], COUNT_NORMAL) > 0) {
+        } elseif (!ctype_alpha($firstChar[0])) {
             return "Does not start with a letter.";
-        } elseif (!count($numericChar, COUNT_NORMAL) > 0) {
+        } elseif (count($numericChar[0], COUNT_NORMAL) <= 0) {
             return "Does not contain any digit.";
         } else {
             return true;
@@ -42,6 +42,16 @@
         return "Invalid email address.";
     }
 
+    function validateCountry($country, $countries)
+    {
+        for ($i = 0; $i < count($countries, COUNT_NORMAL); $i++) {
+            if ($country == $countries[$i]) {
+                return true;
+            }
+        }
+        return $country. " is not supported at the moment.";
+    }
+
     $email = $_POST["email"];
     $newPassword = hash($hash, $_POST["newPassword"], false);
     $confirmPassword = hash($hash, $_POST["confirmPassword"], false);
@@ -53,13 +63,12 @@
     $address = $_POST["address"];
     $postcode = $_POST["postcode"];
 
-    validatePassword($_POST["newPassword"]);
-
     $error = false;
     $errorMessages = [
         validateEmail($email),
-        validatePassword($newPassword),
-        comparePasswords($newPassword, $confirmPassword)
+        validatePassword($_POST["newPassword"]),
+        comparePasswords($newPassword, $confirmPassword),
+        validateCountry($country, $countries)
     ];
 
     for ($i = 0; count($errorMessages, COUNT_NORMAL) > $i; $i++) {
