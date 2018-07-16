@@ -2,7 +2,6 @@ CREATE TABLE IF NOT EXISTS `user`
 (
   `userID`                 INT          NOT NULL AUTO_INCREMENT,
   `userFirstName`          VARCHAR(45)  NOT NULL,
-  `userMiddleName`         VARCHAR(45)  NOT NULL,
   `userLastName`           VARCHAR(45)  NOT NULL,
   `email`                  VARCHAR(60)  NOT NULL,
   `country`                VARCHAR(30)  NOT NULL,
@@ -12,8 +11,21 @@ CREATE TABLE IF NOT EXISTS `user`
   `postCode`               CHAR(6)      NOT NULL,
   `creditCardNumber`       VARCHAR(32)  NULL,
   `creditCardSecurityCode` CHAR(3)      NULL,
-  `password`               VARCHAR(120) NOT NULL,
-  PRIMARY KEY (`userID`)
+  `creditCardExpiry`       DATE         NULL,
+  `password`               CHAR(128)    NOT NULL,
+  PRIMARY KEY (`userID`),
+  UNIQUE (`email`)
+);
+
+CREATE TABLE IF NOT EXISTS `userSession`
+(
+  `userID`  INT          NOT NULL,
+  `session` VARCHAR(128) NOT NULL,
+  PRIMARY KEY (`userID`, `session`),
+  CONSTRAINT `fk_user_session_user` FOREIGN KEY (`userID`)
+  REFERENCES `user` (`userID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
 );
 
 CREATE TABLE IF NOT EXISTS `author`
