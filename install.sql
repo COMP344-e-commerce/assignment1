@@ -1,7 +1,6 @@
 CREATE TABLE IF NOT EXISTS `user`
 (
   `userID`                 INT          NOT NULL AUTO_INCREMENT,
-  `userNickName`           VARCHAR(45)  NOT NULL,
   `userFirstName`          VARCHAR(45)  NOT NULL,
   `userMiddleName`         VARCHAR(45)  NOT NULL,
   `userLastName`           VARCHAR(45)  NOT NULL,
