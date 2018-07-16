@@ -1,3 +1,5 @@
+CREATE DATABASE bookstore;
+use bookstore;
 CREATE TABLE IF NOT EXISTS `user`
 (
   `userID`                 INT          NOT NULL AUTO_INCREMENT,
@@ -17,18 +19,6 @@ CREATE TABLE IF NOT EXISTS `user`
   PRIMARY KEY (`userID`)
 );
 
-CREATE TABLE IF NOT EXISTS `book`
-(
-  `bookISBN`    VARCHAR(45)   NOT NULL,
-  `bookTitle`   VARCHAR(45)   NOT NULL,
-  `cover`       VARCHAR(45)   NULL,
-  `bookPrice`   DECIMAL(6, 2) NOT NULL,
-  `pageNumber`  INT           NOT NULL,
-  `publisherID` CHAR(5)       NULL,
-  `publishYear` VARCHAR(5)    NOT NULL,
-  `unitID`      CHAR(7)       NOT NULL,
-  PRIMARY KEY (`bookISBN`)
-);
 
 CREATE TABLE IF NOT EXISTS `author`
 (
@@ -49,6 +39,35 @@ CREATE TABLE IF NOT EXISTS `publisher`
   PRIMARY KEY (`publisherID`)
 );
 
+create table if not exists `unit`
+(
+`unitID`	int	not null auto_increment,
+`unitName`	varchar(30),
+primary key (`unitID`)
+);
+
+CREATE TABLE IF NOT EXISTS `book`
+(
+  `bookISBN`    VARCHAR(45)   NOT NULL,
+  `bookTitle`   VARCHAR(45)   NOT NULL,
+  `cover`       VARCHAR(45)   NULL,
+  `bookPrice`   DECIMAL(6, 2) NOT NULL,
+  `pageNumber`  INT           NOT NULL,
+  `publisherID` CHAR(5)       NULL,
+  `publishYear` VARCHAR(5)    NOT NULL,
+  `unitID`      int       NOT NULL,
+  `authorID`	int			  NOT NULL,
+  PRIMARY KEY (`bookISBN`),
+  CONSTRAINT `fk_book_unit` FOREIGN KEY (`unitID`)
+  REFERENCES `unit` (`unitID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_book_author` FOREIGN KEY (`authorID`)
+  REFERENCES `author` (`authorID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
+
 CREATE TABLE IF NOT EXISTS `wishList`
 (
   `userID`   INT         NOT NULL,
@@ -62,4 +81,6 @@ CREATE TABLE IF NOT EXISTS `wishList`
   REFERENCES `book` (`bookISBN`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
-)
+);
+
+
