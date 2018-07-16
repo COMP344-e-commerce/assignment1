@@ -14,11 +14,11 @@
         preg_match("/^[a-zA-Z]/", $newPassword, $firstChar);
         preg_match_all("/\d/", $newPassword, $numericChar);
         if (strlen($newPassword) < 6) {
-            return "does not have more than $minChar characters";
+            return "Does not have more than $minChar characters.";
         } elseif (!count($firstChar[0], COUNT_NORMAL) > 0) {
-            return "not start with letter";
+            return "Does not start with a letter.";
         } elseif (!count($numericChar, COUNT_NORMAL) > 0) {
-            return "no digit";
+            return "Does not contain any digit.";
         } else {
             return true;
         }
@@ -29,13 +29,17 @@
         if ($newPassword == $confirmPassword) {
             return true;
         } else {
-            return "Passwords do not match";
+            return "Passwords do not match.";
         }
     }
 
     function validateEmail($email)
     {
-        return true;
+        preg_match("/[a-zA-Z].*@[a-z]*[.][a-z]*[a-z0-9.]*/", $email, $matchedEmail);
+        if ($email == $matchedEmail[0]) {
+            return true;
+        }
+        return "Invalid email address.";
     }
 
     $email = $_POST["email"];
@@ -53,13 +57,14 @@
 
     $error = false;
     $errorMessages = [
+        validateEmail($email),
         validatePassword($newPassword),
         comparePasswords($newPassword, $confirmPassword)
     ];
 
     for ($i = 0; count($errorMessages, COUNT_NORMAL) > $i; $i++) {
         if ($errorMessages[$i] !== true) {
-            echo $errorMessages[$i];
+            echo $errorMessages[$i] . "<br>";
             $error = true;
         }
     }
@@ -73,7 +78,7 @@
         `password`) 
         VALUES ('$firstName', '$lastName', '$email', '$country', '$state', '$city', '$address', '$postcode',
         '$newPassword');
-           ";
+        ";
 
         if ($conn->query($sql)) {
             echo "Registered successfully";
