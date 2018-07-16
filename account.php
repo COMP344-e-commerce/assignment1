@@ -17,7 +17,15 @@
         <label>Last Name: </label>
         <input name="lastName" type="text"><br>
         <label>Country: </label>
-        <input name="country" type="text"><br>
+        <select name="country">
+            <?php
+            // Maybe I want to sell textbooks to China in the future, so I use an array
+            for ($i = 0; $i < count($countries, COUNT_NORMAL); $i++) {
+                echo "<option value='$countries[$i]'>$countries[$i]</option>";
+            }
+            ?>
+        </select>
+        <br>
         <label>State: </label>
         <input name="state" type="text"><br>
         <label>City: </label>

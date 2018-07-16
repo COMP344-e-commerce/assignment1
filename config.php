@@ -4,3 +4,4 @@ $user_name = "ausstu2";
 $passwd = "DhKCaeN0";
 $database = "ausstu2";
 $hash = "sha512";
+$countries = ["Australia"];
