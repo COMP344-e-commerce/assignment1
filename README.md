@@ -18,3 +18,5 @@ This is COMP344 assignemnt 1
 | /             | GET         | text/html | Home page                                     |
 | /install.php  | GET         | text/html | Drop all tables then then recreate all tables |
 | /account.php  | GET         | text/html | Register new user or login                    |
+| /register.php | POST        | text/html | Register new user                             |
+| /login.php    | POST        | text/html | Login                                         |
