@@ -20,7 +20,7 @@ INSERT INTO `user`
 (`userFirstName`, `userLastName`, `email`, `country`, `state`, `city`, `address`, `postCode`, 
 `password`) 
 VALUES ('$firstName', '$lastName', '$email', '$country', '$state', '$city', '$address', '$postcode',
-'$password');
+'$newPassword');
 ";
 
 if ($conn->query($sql)) {

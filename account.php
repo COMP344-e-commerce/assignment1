@@ -30,7 +30,7 @@
 </div>
 <h1>Sign in</h1>
 <div>
-    <form method="post" action="signin.php" id="registerForm">
+    <form method="post" action="login.php" id="loginForm">
         <label>Email: </label>
         <input name="email"><br>
         <label>Password: </label>
