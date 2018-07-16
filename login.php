@@ -10,18 +10,14 @@ $password = hash($hash, $_POST["password"], false);
 
 $sql = "
 SELECT `email`, `password` FROM `user`
-WHERE `email` = '$email';
+WHERE `email` = '$email'
+AND `password` = '$password';
 ";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    if ($password != $row["password"]) {
-        echo "Wrong password.";
-    } else {
-        echo "Login successfully.";
-    }
+    echo "Login successfully.";
 } else {
-    echo "User does not exist.";
+    echo "Unable to login.";
 }
 
 ?>
