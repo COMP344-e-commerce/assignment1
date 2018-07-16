@@ -1,11 +1,7 @@
-CREATE DATABASE bookstore;
-use bookstore;
 CREATE TABLE IF NOT EXISTS `user`
 (
   `userID`                 INT          NOT NULL AUTO_INCREMENT,
-  `userNickName`           VARCHAR(45)  NOT NULL,
   `userFirstName`          VARCHAR(45)  NOT NULL,
-  `userMiddleName`         VARCHAR(45)  NOT NULL,
   `userLastName`           VARCHAR(45)  NOT NULL,
   `email`                  VARCHAR(60)  NOT NULL,
   `country`                VARCHAR(30)  NOT NULL,
@@ -15,10 +11,22 @@ CREATE TABLE IF NOT EXISTS `user`
   `postCode`               CHAR(6)      NOT NULL,
   `creditCardNumber`       VARCHAR(32)  NULL,
   `creditCardSecurityCode` CHAR(3)      NULL,
-  `password`               VARCHAR(120) NOT NULL,
-  PRIMARY KEY (`userID`)
+  `creditCardExpiry`       DATE         NULL,
+  `password`               CHAR(128)    NOT NULL,
+  PRIMARY KEY (`userID`),
+  UNIQUE (`email`)
 );
 
+CREATE TABLE IF NOT EXISTS `userSession`
+(
+  `userID`  INT          NOT NULL,
+  `session` VARCHAR(128) NOT NULL,
+  PRIMARY KEY (`userID`, `session`),
+  CONSTRAINT `fk_user_session_user` FOREIGN KEY (`userID`)
+  REFERENCES `user` (`userID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
 
 CREATE TABLE IF NOT EXISTS `author`
 (
@@ -39,11 +47,11 @@ CREATE TABLE IF NOT EXISTS `publisher`
   PRIMARY KEY (`publisherID`)
 );
 
-create table if not exists `unit`
+CREATE TABLE IF NOT EXISTS `unit`
 (
-`unitID`	int	not null auto_increment,
-`unitName`	varchar(30),
-primary key (`unitID`)
+  `unitID`   INT NOT NULL AUTO_INCREMENT,
+  `unitName` VARCHAR(30),
+  PRIMARY KEY (`unitID`)
 );
 
 CREATE TABLE IF NOT EXISTS `book`
@@ -55,8 +63,8 @@ CREATE TABLE IF NOT EXISTS `book`
   `pageNumber`  INT           NOT NULL,
   `publisherID` CHAR(5)       NULL,
   `publishYear` VARCHAR(5)    NOT NULL,
-  `unitID`      int       NOT NULL,
-  `authorID`	int			  NOT NULL,
+  `unitID`      INT           NOT NULL,
+  `authorID`    INT           NOT NULL,
   PRIMARY KEY (`bookISBN`),
   CONSTRAINT `fk_book_unit` FOREIGN KEY (`unitID`)
   REFERENCES `unit` (`unitID`)
@@ -64,6 +72,10 @@ CREATE TABLE IF NOT EXISTS `book`
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_book_author` FOREIGN KEY (`authorID`)
   REFERENCES `author` (`authorID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_book_publisher` FOREIGN KEY (`publisherID`)
+  REFERENCES `publisher` (`publisherID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );
