@@ -26,8 +26,8 @@ function comparePasswords($newPassword, $confirmPassword)
 
 function validateEmail($email)
 {
-    preg_match("/[a-zA-Z].*@[a-z]*[.][a-z]*[a-z0-9.]*/", $email, $matchedEmail);
-    if ($email == $matchedEmail[0]) {
+
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
         return true;
     }
     return "Invalid email address.";
