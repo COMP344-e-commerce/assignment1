@@ -40,6 +40,15 @@ function validateCountry($country, $countries)
             return true;
         }
     }
-    return $country. " is not supported at the moment.";
+    return $country . " is not supported at the moment.";
 }
 
+function validateName($name, $part="first name")
+{
+    $regex = "[a-zA-Z-_]*";
+    preg_match("/$regex/", $name, $matchedName);
+    if ($name == $matchedName[0]) {
+        return true;
+    }
+    return "The $part can only include $regex";
+}

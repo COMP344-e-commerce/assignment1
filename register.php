@@ -25,7 +25,9 @@
         validateEmail($email),
         validatePassword($_POST["newPassword"]),
         comparePasswords($newPassword, $confirmPassword),
-        validateCountry($country, $countries)
+        validateCountry($country, $countries),
+        validateName($firstName),
+        validateName($lastName, "last name")
     ];
 
     for ($i = 0; count($errorMessages, COUNT_NORMAL) > $i; $i++) {
