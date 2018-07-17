@@ -36,6 +36,7 @@
         validateAddress($city, "city"),
         validateAddress($address, "street address"),
         validatePostcode($postcode),
+        validateCard($cardNumber),
         validateExpiry($cardExpiry)
     ];
 

@@ -27,7 +27,22 @@ function comparePasswords($newPassword, $confirmPassword)
 function validateEmail($email)
 {
 
+
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        // construct regex
+        $validDomains = ["mq.edu.au", "hit.edu.cn"];
+        $regex = "@[\S]*";
+        for ($i = 0; $i < count($validDomains); $i++) {
+            $regex = $regex . $validDomains[$i] . "|";
+        }
+        // remove the last | in the regex
+        $regex = substr($regex, 0, strlen($regex) - 1);
+
+        preg_match("/$regex/", $email, $matchedEmail);
+        if (count($matchedEmail) <= 0) {
+
+            return "Only allow emails from these domains: ". implode(", ", $validDomains);
+        }
         return true;
     }
     return "Invalid email address.";
@@ -81,4 +96,16 @@ function validateExpiry($cardExpiry)
         return true;
     }
     return "Credit card expiry is invalid. It might be expired.";
+}
+
+function validateCard($number)
+{
+    // Discover has 13 numbers, and some cards can have up to 19 numbers.
+    // I allow up to 20 numbers because I'm not sure
+    $regex = "[0-9]{13,20}";
+    preg_match("/$regex/", $number, $matchedNumber);
+    if ($number == $matchedNumber[0]) {
+        return true;
+    }
+    return "Credit card number is invalid.";
 }
