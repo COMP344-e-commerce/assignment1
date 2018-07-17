@@ -42,3 +42,4 @@ function validateCountry($country, $countries)
     }
     return $country. " is not supported at the moment.";
 }
+
