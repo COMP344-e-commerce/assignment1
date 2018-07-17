@@ -24,13 +24,12 @@ function comparePasswords($newPassword, $confirmPassword)
     }
 }
 
-function validateEmail($email)
+function validateEmail($email, $validDomains)
 {
 
 
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
         // construct regex
-        $validDomains = ["mq.edu.au", "hit.edu.cn"];
         $regex = "@[\S]*";
         for ($i = 0; $i < count($validDomains); $i++) {
             $regex = $regex . $validDomains[$i] . "|";
@@ -40,8 +39,7 @@ function validateEmail($email)
 
         preg_match("/$regex/", $email, $matchedEmail);
         if (count($matchedEmail) <= 0) {
-
-            return "Only allow emails from these domains: ". implode(", ", $validDomains);
+            return "Only allow emails from these domains: " . implode(", ", $validDomains);
         }
         return true;
     }

@@ -26,7 +26,7 @@
 
     // Collect all the errors the client made
     $errorMessages = [
-        validateEmail($email),
+        validateEmail($email, $validDomains),
         validatePassword($_POST["newPassword"]),
         comparePasswords($newPassword, $confirmPassword),
         validateCountry($country, $countries),
