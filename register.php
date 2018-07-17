@@ -27,7 +27,11 @@
         comparePasswords($newPassword, $confirmPassword),
         validateCountry($country, $countries),
         validateName($firstName),
-        validateName($lastName, "last name")
+        validateName($lastName, "last name"),
+        validateAddress($state),
+        validateAddress($city, "city"),
+        validateAddress($address, "street address"),
+        validatePostcode($postcode)
     ];
 
     for ($i = 0; count($errorMessages, COUNT_NORMAL) > $i; $i++) {

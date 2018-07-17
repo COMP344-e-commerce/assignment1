@@ -43,12 +43,31 @@ function validateCountry($country, $countries)
     return $country . " is not supported at the moment.";
 }
 
-function validateName($name, $part="first name")
+function validateName($name, $part = "first name")
 {
-    $regex = "[a-zA-Z-_]*";
+    $regex = "[a-zA-Z-_\s]*";
     preg_match("/$regex/", $name, $matchedName);
     if ($name == $matchedName[0]) {
         return true;
     }
-    return "The $part can only include $regex";
+    return "The $part can only contain $regex";
+}
+
+function validateAddress($address, $part = "state")
+{
+    $regex = "[a-zA-Z-_\s\d']*";
+    preg_match("/$regex/", $address, $matchedState);
+    if ($address == $matchedState[0]) {
+        return true;
+    }
+    return "The $part can only contain $regex";
+}
+
+function validatePostcode($postcode)
+{
+    $valid = filter_var($postcode, FILTER_VALIDATE_INT);
+    if ($valid & $postcode > 0) {
+        return true;
+    }
+    return "Postcode provided is not valid.";
 }
