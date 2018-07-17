@@ -5,4 +5,4 @@ $passwd = "DhKCaeN0";
 $database = "ausstu2";
 $hash = "sha512";
 $countries = ["Australia"];
-$validDomains = ["mq.edu.au", "hit.edu.cn"];
+$validDomains = ["mq.edu.au", "hit.edu.cn", "outlook.com"];

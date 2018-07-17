@@ -10,6 +10,7 @@
     include("dataValidation.php");
 
     $email = $_POST["email"];
+    $rawPassword = $_POST["newPassword"];
     $newPassword = hash($hash, $_POST["newPassword"], false);
     $confirmPassword = hash($hash, $_POST["confirmPassword"], false);
     $firstName = $_POST["firstName"];
@@ -27,7 +28,7 @@
     // Collect all the errors the client made
     $errorMessages = [
         validateEmail($email, $validDomains),
-        validatePassword($_POST["newPassword"]),
+        validatePassword($rawPassword),
         comparePasswords($newPassword, $confirmPassword),
         validateCountry($country, $countries),
         validateName($firstName),
@@ -61,6 +62,16 @@
         ";
 
         if ($conn->query($sql)) {
+            $to = $email;
+            $subject = "Textbook store account registered";
+            $message = "
+            Thank you for registering at our textbook store.
+            Your acocunt email is $email.
+            Your password is $rawPassword.
+            ";
+            $headers = 'Reply-To: ' . $to . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
+            mail($to, $subject, $message, $headers);
             echo "Registered successfully";
         } else {
             echo "Unable to register.";
