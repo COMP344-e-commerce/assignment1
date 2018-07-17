@@ -19,8 +19,12 @@
     $city = $_POST["city"];
     $address = $_POST["address"];
     $postcode = $_POST["postcode"];
+    $cardNumber = $_POST["cardNumber"];
+    $cardExpiry = $_POST["cardExpiry"]. "-01 00:00:00";
 
     $error = false;
+
+    // Collect all the errors the client made
     $errorMessages = [
         validateEmail($email),
         validatePassword($_POST["newPassword"]),
@@ -31,9 +35,11 @@
         validateAddress($state),
         validateAddress($city, "city"),
         validateAddress($address, "street address"),
-        validatePostcode($postcode)
+        validatePostcode($postcode),
+        validateExpiry($cardExpiry)
     ];
 
+    // Display all the errors the client made
     for ($i = 0; count($errorMessages, COUNT_NORMAL) > $i; $i++) {
         if ($errorMessages[$i] !== true) {
             echo $errorMessages[$i] . "<br>";
@@ -41,15 +47,16 @@
         }
     }
 
+    // if the client provides all valid data, insert the data into database
     if ($error) {
         echo "Unable to register.";
     } else {
         $sql = "
         INSERT INTO `user` 
         (`userFirstName`, `userLastName`, `email`, `country`, `state`, `city`, `address`, `postCode`, 
-        `password`) 
+        `password`, `creditCardNumber`, `creditCardExpiry`) 
         VALUES ('$firstName', '$lastName', '$email', '$country', '$state', '$city', '$address', '$postcode',
-        '$newPassword');
+        '$newPassword', '$cardNumber', '$cardExpiry');
         ";
 
         if ($conn->query($sql)) {
@@ -58,7 +65,7 @@
             echo "Unable to register.";
         }
     }
-
+    $conn->close();
     ?>
 </div>
 </body>

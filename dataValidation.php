@@ -5,11 +5,11 @@ function validatePassword($newPassword)
     preg_match("/^[a-zA-Z]/", $newPassword, $firstChar);
     preg_match_all("/\d/", $newPassword, $numericChar);
     if (strlen($newPassword) < 6) {
-        return "Does not have more than $minChar characters.";
+        return "Password does not have more than $minChar characters.";
     } elseif (!ctype_alpha($firstChar[0])) {
-        return "Does not start with a letter.";
+        return "Password does not start with a letter.";
     } elseif (count($numericChar[0], COUNT_NORMAL) <= 0) {
-        return "Does not contain any digit.";
+        return "Password does not contain any digit.";
     } else {
         return true;
     }
@@ -65,9 +65,20 @@ function validateAddress($address, $part = "state")
 
 function validatePostcode($postcode)
 {
-    $valid = filter_var($postcode, FILTER_VALIDATE_INT);
-    if ($valid & $postcode > 0) {
+    if (filter_var($postcode, FILTER_VALIDATE_INT)) {
         return true;
     }
     return "Postcode provided is not valid.";
+}
+
+function validateExpiry($cardExpiry)
+{
+    $regex = "[0-9]{4}-[0-9]{2}-01\s00:00:00";
+    preg_match("/$regex/", $cardExpiry, $matchedDate);
+    $currentTimestamp = strtotime(date('Y-m-d H:i:s'));
+    $cardTimestamp = strtotime($cardExpiry);
+    if ($cardExpiry == $matchedDate[0] & $cardTimestamp > $currentTimestamp) {
+        return true;
+    }
+    return "Credit card expiry is invalid. It might be expired.";
 }

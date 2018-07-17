@@ -34,6 +34,10 @@
         <input name="address" type="text"><br>
         <label>Postcode: </label>
         <input name="postcode" type="number" min="0"><br>
+        <label>Credit card number: </label>
+        <input name="cardNumber" type="number"><br>
+        <label>Credit card expiry: </label>
+        <input name="cardExpiry" type="month" /><br>
         <input type="submit" value="Register">
     </form>
 </div>
