@@ -65,14 +65,14 @@
             $to = $email;
             $subject = "Textbook store account registered";
             $message = "
-            Thank you for registering at our textbook store.
-            Your acocunt email is $email.
+            Thank you for registering at our textbook store.<br>
+            Your acocunt email is $email.<br>
             Your password is $rawPassword.
             ";
             $headers = 'Reply-To: ' . $to . "\r\n" .
                 'X-Mailer: PHP/' . phpversion();
             mail($to, $subject, $message, $headers);
-            echo "Registered successfully";
+            echo $message;
         } else {
             echo "Unable to register.";
         }
