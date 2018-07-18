@@ -7,7 +7,7 @@
 <p>
     <?php
     if (isset($_SESSION["user"])) {
-    echo "You are logged in as: ". $_SESSION["user"];
+        echo "You are logged in as: " . $_SESSION["user"];
     }
     ?>
 
