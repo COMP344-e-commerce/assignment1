@@ -2,7 +2,7 @@
 <?php $title = "Login" ?>
 <?php include("head.php"); ?>
 <body>
-<?php include("navigation.php"); ?>
+<?php include("header.html"); ?>
 <h1>Login</h1>
 <?php
 @session_start();
@@ -24,5 +24,6 @@ if ($result->num_rows > 0) {
 }
 
 ?>
+<?php include("footer.html"); ?>
 </body>
 </html>

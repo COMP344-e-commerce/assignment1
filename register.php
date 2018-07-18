@@ -2,7 +2,7 @@
 <?php $title = "Register" ?>
 <?php include("head.php"); ?>
 <body>
-<?php include("navigation.php"); ?>
+<?php include("header.html"); ?>
 <h1>Register</h1>
 <div>
     <?php
@@ -80,5 +80,6 @@
     $conn->close();
     ?>
 </div>
+<?php include("footer.html"); ?>
 </body>
 </html>
