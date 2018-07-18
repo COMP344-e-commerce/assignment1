@@ -100,7 +100,7 @@ function validateCard($number)
 {
     // Discover has 13 numbers, and some cards can have up to 19 numbers.
     // I allow up to 20 numbers because I'm not sure
-    $regex = "[0-9]{13,20}";
+    $regex = "[0-9]{10}";
     preg_match("/$regex/", $number, $matchedNumber);
     if ($number == $matchedNumber[0]) {
         return true;
