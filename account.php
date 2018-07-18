@@ -48,7 +48,7 @@
 <div>
     <form method="post" action="login.php" id="loginForm">
         <label>Email: </label>
-        <input name="emailLogin" onchange="validateEmailLogin();"><div name="emailLoginVali"></div><br>
+        <input name="email" onchange="validateEmailLogin();"><div name="emailLoginVali"></div><br>
         <label>Password: </label>
         <input name="password" type="password"><br>
         <input type="submit" value="Sign in" name="loginButton">

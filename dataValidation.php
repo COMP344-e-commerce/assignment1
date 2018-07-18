@@ -2,10 +2,11 @@
 function validatePassword($newPassword)
 {
     $minChar = 6;
+    $maxChar = 6;
     preg_match("/^[a-zA-Z]/", $newPassword, $firstChar);
     preg_match_all("/\d/", $newPassword, $numericChar);
-    if (strlen($newPassword) < 6) {
-        return "Password does not have more than $minChar characters.";
+    if (strlen($newPassword) < 6 & strlen($newPassword) > $maxChar) {
+        return "Password need to be betwwn $minChar and $maxChar characters.";
     } elseif (!ctype_alpha($firstChar[0])) {
         return "Password does not start with a letter.";
     } elseif (count($numericChar[0], COUNT_NORMAL) <= 0) {

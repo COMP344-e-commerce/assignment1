@@ -9,7 +9,6 @@
 include("database.php");
 $email = $_POST["email"];
 $password = hash($hash, $_POST["password"], false);
-
 $sql = "
 SELECT `email`, `password` FROM `user`
 WHERE `email` = '$email'
