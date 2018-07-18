@@ -2,7 +2,7 @@
 <?php $title = "Account" ?>
 <?php include("head.php"); ?>
 <body>
-<?php include("navigation.html"); ?>
+<?php include("header.html"); ?>
 <h1>Register</h1>
 <div>
     <form method="post" action="register.php" id="registerForm">
@@ -51,5 +51,6 @@
         <input type="submit" value="Sign in">
     </form>
 </div>
+<?php include("footer.html"); ?>
 </body>
 </html>
