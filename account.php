@@ -35,7 +35,7 @@
         <label>Postcode: </label>
         <input name="postcode" type="number" min="0"><br>
         <label>Credit card number: </label>
-        <input name="cardNumber" type="number"><br>
+        <input name="cardNumber" type="number" min="1000000000" max="9999999999"><br>
         <label>Credit card expiry: </label>
         <input name="cardExpiry" type="month" /><br>
         <input type="submit" value="Register">
