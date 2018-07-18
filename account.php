@@ -2,7 +2,7 @@
 <?php $title = "Account" ?>
 <?php include("head.php"); ?>
 <body>
-<?php include("navigation.php"); ?>
+<?php include("navigation.html"); ?>
 <h1>Register</h1>
 <div>
     <form method="post" action="register.php" id="registerForm">

@@ -2,7 +2,7 @@
 <?php $title = "COMP344" ?>
 <?php include("head.php"); ?>
 <body>
-<?php include("navigation.php"); ?>
+<?php include("navigation.html"); ?>
 <h1>COMP344 Bookstore</h1>
 <p>
     <?php

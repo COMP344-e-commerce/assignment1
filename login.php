@@ -2,7 +2,7 @@
 <?php $title = "Login" ?>
 <?php include("head.php"); ?>
 <body>
-<?php include("navigation.php"); ?>
+<?php include("navigation.html"); ?>
 <h1>Login</h1>
 <?php
 @session_start();

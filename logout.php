@@ -2,7 +2,7 @@
 <?php $title = "Logout" ?>
 <?php include("head.php"); ?>
 <body>
-<?php include("navigation.php"); ?>
+<?php include("navigation.html"); ?>
 <h1>Logout</h1>
 <?php
 if (isset($_SESSION['user'])) {
