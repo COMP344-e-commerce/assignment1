@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <html>
 <?php $title = "Login" ?>
 <?php include("head.php"); ?>
@@ -5,7 +6,7 @@
 <?php include("header.html"); ?>
 <h1>Login</h1>
 <?php
-@session_start();
+//@session_start();
 include("database.php");
 $email = $_POST["email"];
 $password = hash($hash, $_POST["password"], false);
