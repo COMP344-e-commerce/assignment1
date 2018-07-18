@@ -27,11 +27,19 @@ function comparePasswords($newPassword, $confirmPassword)
 
 function validateEmail($email, $validDomains)
 {
+    // construct regex
+    $regex = "";
+    for ($i = 0; $i < count($validDomains); $i++) {
+        $regex = $regex . "[a-zA-Z0-9]*@[.a-zA-Z0-9]*" . $validDomains[$i] . "|";
+    }
+    // remove the last | in the regex
+    $regex = substr($regex, 0, strlen($regex) - 1);
+    echo $regex;
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
         // construct regex
         $regex = "";
         for ($i = 0; $i < count($validDomains); $i++) {
-            $regex = $regex . ".*@[\S]*" . $validDomains[$i] . "|";
+            $regex = $regex . "[a-zA-Z0-9]*@[.a-zA-Z0-9]*" . $validDomains[$i] . "|";
         }
         // remove the last | in the regex
         $regex = substr($regex, 0, strlen($regex) - 1);
