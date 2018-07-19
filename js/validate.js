@@ -9,7 +9,7 @@ function validateEmail() {
     }
     else {
         document.getElementsByName("emailVali")[0].style.display = "block"
-        document.getElementsByName("emailVali")[0].innerHTML = "illegal email";
+        document.getElementsByName("emailVali")[0].innerHTML = "Illegal email. Please use MQ or HIT email addresses.";
         window.email = false;
     }
     console.log(window.email);
@@ -25,7 +25,8 @@ function validatePassword() {
     }
     else {
         document.getElementsByName("newPasswordVali")[0].style.display = "block";
-        document.getElementsByName("newPasswordVali")[0].innerHTML = "Incorrect password format";
+        document.getElementsByName("newPasswordVali")[0].innerHTML = "Incorrect password format. It must be 6 char and " +
+            "not start with a number";
         window.password = false;
     }
     console.log(window.password);
@@ -56,7 +57,7 @@ function validatePostcode() {
     }
     else {
         document.getElementsByName("postcodeVali")[0].style.display = "block";
-        document.getElementsByName("postcodeVali")[0].innerHTML = "illegal postcode";
+        document.getElementsByName("postcodeVali")[0].innerHTML = "Illegal postcode. It must be 4 number characters.";
         window.postcode = false;
     }
     console.log(window.postcode);

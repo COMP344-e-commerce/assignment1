@@ -3,44 +3,45 @@
 <?php include("head.php"); ?>
 <body>
 <?php include("header.html"); ?>
+<?php
+include("database.php");
+include("dataValidation.php");
+
+$email = $_POST["email"];
+$rawPassword = $_POST["newPassword"];
+$newPassword = hash($hash, $_POST["newPassword"], false);
+$confirmPassword = hash($hash, $_POST["confirmPassword"], false);
+$firstName = $_POST["firstName"];
+$lastName = $_POST["lastName"];
+$country = $_POST["country"];
+$state = $_POST["state"];
+$city = $_POST["city"];
+$address = $_POST["address"];
+$postcode = $_POST["postcode"];
+$cardNumber = $_POST["cardNumber"];
+$cardExpiry = $_POST["cardExpiry"] . "-01 00:00:00";
+
+$error = false;
+
+// Collect all the errors the client made
+$errorMessages = [
+    validateEmail($email, $validDomains),
+    validatePassword($rawPassword),
+    comparePasswords($newPassword, $confirmPassword),
+    validateCountry($country, $countries),
+    validateName($firstName),
+    validateName($lastName, "last name"),
+    validateAddress($state),
+    validateAddress($city, "city"),
+    validateAddress($address, "street address"),
+    validatePostcode($postcode),
+    validateCard($cardNumber),
+    validateExpiry($cardExpiry)
+];
+?>
 <h1>Register</h1>
 <div>
     <?php
-    include("database.php");
-    include("dataValidation.php");
-
-    $email = $_POST["email"];
-    $rawPassword = $_POST["newPassword"];
-    $newPassword = hash($hash, $_POST["newPassword"], false);
-    $confirmPassword = hash($hash, $_POST["confirmPassword"], false);
-    $firstName = $_POST["firstName"];
-    $lastName = $_POST["lastName"];
-    $country = $_POST["country"];
-    $state = $_POST["state"];
-    $city = $_POST["city"];
-    $address = $_POST["address"];
-    $postcode = $_POST["postcode"];
-    $cardNumber = $_POST["cardNumber"];
-    $cardExpiry = $_POST["cardExpiry"]. "-01 00:00:00";
-
-    $error = false;
-
-    // Collect all the errors the client made
-    $errorMessages = [
-        validateEmail($email, $validDomains),
-        validatePassword($rawPassword),
-        comparePasswords($newPassword, $confirmPassword),
-        validateCountry($country, $countries),
-        validateName($firstName),
-        validateName($lastName, "last name"),
-        validateAddress($state),
-        validateAddress($city, "city"),
-        validateAddress($address, "street address"),
-        validatePostcode($postcode),
-        validateCard($cardNumber),
-        validateExpiry($cardExpiry)
-    ];
-
     // Display all the errors the client made
     for ($i = 0; count($errorMessages, COUNT_NORMAL) > $i; $i++) {
         if ($errorMessages[$i] !== true) {

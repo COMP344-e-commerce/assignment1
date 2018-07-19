@@ -10,11 +10,14 @@
 <div>
     <form method="post" action="register.php" id="registerForm">
         <label>Email: </label>
-        <input name="email" type="email" onchange="validateEmail();"><div name="emailVali"></div><br>
+        <input name="email" type="email" onchange="validateEmail();"><br>
+        <div name="emailVali"></div>
         <label>New password: </label>
-        <input name="newPassword" type="password" onchange="validatePassword();validateConfirm();"><div name="newPasswordVali"></div><br>
+        <input name="newPassword" type="password" maxlength="6" minlength="6" onchange="validatePassword();validateConfirm();"><br>
+        <div name="newPasswordVali"></div>
         <label>Confirm password: </label>
-        <input name="confirmPassword" type="password" onchange="validateConfirm();"><div name="confirmPasswordVali"></div><br>
+        <input name="confirmPassword" type="password" maxlength="6" minlength="6" onchange="validateConfirm();"><br>
+        <div name="confirmPasswordVali"></div>
         <label>First Name: </label>
         <input name="firstName" type="text"><br>
         <label>Last Name: </label>
@@ -36,9 +39,11 @@
         <label>Street address: </label>
         <input name="address" type="text"><br>
         <label>Postcode: </label>
-        <input name="postcode" type="number" min="0" onchange="validatePostcode();"><div name="postcodeVali"></div><br>
+        <input name="postcode" type="text" pattern="[0-9.]+" minlength="4" maxlength="4" onchange="validatePostcode();"><br>
+        <div name="postcodeVali"></div>
         <label>Credit card number: </label>
-        <input name="cardNumber" type="number" onchange="validateCardNumber();"><div name="cardNumberVali"></div><br>
+        <input name="cardNumber" type="number" onchange="validateCardNumber();"><br>
+        <div name="cardNumberVali"></div>
         <label>Credit card expiry: </label>
         <input name="cardExpiry" type="month" /><br>
         <input type="submit" value="Register" name="registerButton" >
@@ -48,7 +53,8 @@
 <div>
     <form method="post" action="login.php" id="loginForm">
         <label>Email: </label>
-        <input name="email" onchange="validateEmailLogin();"><div name="emailLoginVali"></div><br>
+        <input name="email" onchange="validateEmailLogin();"><br>
+        <div name="emailLoginVali"></div>
         <label>Password: </label>
         <input name="password" type="password"><br>
         <input type="submit" value="Sign in" name="loginButton">

@@ -77,7 +77,8 @@ function validateAddress($address, $part = "state")
 
 function validatePostcode($postcode)
 {
-    if (filter_var($postcode, FILTER_VALIDATE_INT)) {
+    preg_match("/[0-9]{4}/", $postcode, $matchedPostcode);
+    if (filter_var($postcode, FILTER_VALIDATE_INT) && $postcode == $matchedPostcode[0]) {
         return true;
     }
     return "Postcode provided is not valid.";
