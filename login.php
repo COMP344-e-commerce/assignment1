@@ -8,7 +8,7 @@
 <?php
 //@session_start();
 include("database.php");
-$email = $_POST["email"];
+$email = $_POST["emailLogin"];
 $password = hash($hash, $_POST["password"], false);
 $sql = "
 SELECT `email`, `password` FROM `user`

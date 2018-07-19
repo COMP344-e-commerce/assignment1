@@ -1,15 +1,15 @@
 var email, password, confirm, postcode, cardNumber, emailLogin;
 
 function validateEmail() {
-    var email = document.getElementsByName("email")[0].value;
+    var email = document.getElementById("email").value;
     var reg = /[a-zA-Z0-9]*@[.a-zA-Z0-9]*mq.edu.au|[a-zA-Z0-9]*@[.a-zA-Z0-9]*hit.edu.cn/;
     if (reg.test(email)) {
-        document.getElementsByName("emailVali")[0].style.display = "none";
+        document.getElementById("emailVali").style.display = "none";
         window.email = true;
     }
     else {
-        document.getElementsByName("emailVali")[0].style.display = "block"
-        document.getElementsByName("emailVali")[0].innerHTML = "Illegal email. Please use MQ or HIT email addresses.";
+        document.getElementById("emailVali").style.display = "block"
+        document.getElementById("emailVali").innerHTML = "Illegal email. Please use MQ or HIT email addresses.";
         window.email = false;
     }
     console.log(window.email);
@@ -17,15 +17,15 @@ function validateEmail() {
 }
 
 function validatePassword() {
-    var password = document.getElementsByName("newPassword")[0].value;
+    var password = document.getElementById("newPassword").value;
     var reg = /^[a-zA-Z]{1}[a-zA-Z0-9]{5}$/;
     if (reg.test(password)) {
-        document.getElementsByName("newPasswordVali")[0].style.display = "none";
+        document.getElementById("newPasswordVali").style.display = "none";
         window.password = true;
     }
     else {
-        document.getElementsByName("newPasswordVali")[0].style.display = "block";
-        document.getElementsByName("newPasswordVali")[0].innerHTML = "Incorrect password format. It must be 6 char and " +
+        document.getElementById("newPasswordVali").style.display = "block";
+        document.getElementById("newPasswordVali").innerHTML = "Incorrect password format. It must be 6 char and " +
             "not start with a number";
         window.password = false;
     }
@@ -34,14 +34,14 @@ function validatePassword() {
 }
 
 function validateConfirm() {
-    if (document.getElementsByName("newPassword")[0].value ==
-        document.getElementsByName("confirmPassword")[0].value) {
-        document.getElementsByName("confirmPasswordVali")[0].style.display = "none";
+    if (document.getElementById("newPassword").value ==
+        document.getElementById("confirmPassword").value) {
+        document.getElementById("confirmPasswordVali").style.display = "none";
         window.confirm = true;
     }
     else {
-        document.getElementsByName("confirmPasswordVali")[0].style.display = "block";
-        document.getElementsByName("confirmPasswordVali")[0].innerHTML = "passwords are different";
+        document.getElementById("confirmPasswordVali").style.display = "block";
+        document.getElementById("confirmPasswordVali").innerHTML = "passwords are different";
         window.confirm = false;
     }
     console.log(window.confirm);
@@ -49,15 +49,15 @@ function validateConfirm() {
 }
 
 function validatePostcode() {
-    var postcode = document.getElementsByName("postcode")[0].value;
+    var postcode = document.getElementById("postcode").value;
     var reg = /^[0-9]{4}$/;
     if (reg.test(postcode)) {
-        document.getElementsByName("postcodeVali")[0].style.display = "none";
+        document.getElementById("postcodeVali").style.display = "none";
         window.postcode = true;
     }
     else {
-        document.getElementsByName("postcodeVali")[0].style.display = "block";
-        document.getElementsByName("postcodeVali")[0].innerHTML = "Illegal postcode. It must be 4 number characters.";
+        document.getElementById("postcodeVali").style.display = "block";
+        document.getElementById("postcodeVali").innerHTML = "Illegal postcode. It must be 4 number characters.";
         window.postcode = false;
     }
     console.log(window.postcode);
@@ -65,42 +65,58 @@ function validatePostcode() {
 }
 
 function validateCardNumber() {
-    var cardNumber = document.getElementsByName("cardNumber")[0].value;
+    var cardNumber = document.getElementById("cardNumber").value;
     var reg = /^[0-9]{10}$/;
     if (reg.test(cardNumber)) {
-        document.getElementsByName("cardNumberVali")[0].style.display = "none";
+        document.getElementById("cardNumberVali").style.display = "none";
         window.cardNumber = true;
     }
     else {
-        document.getElementsByName("cardNumberVali")[0].style.display = "block";
-        document.getElementsByName("cardNumberVali")[0].innerHTML = "illegal CardNumber";
+        document.getElementById("cardNumberVali").style.display = "block";
+        document.getElementById("cardNumberVali").innerHTML = "Illegal CardNumber";
         window.cardNumber = false;
     }
     console.log(window.cardNumber);
     buttonRegi();
 }
 
+function validateCardExpiry() {
+    var cardExpiry = (new Date(document.getElementById("cardExpiry").value)).getTime() / 1000;
+    var currentTime = parseInt((new Date()).getTime() / 1000);
+    if (currentTime < cardExpiry) {
+        document.getElementById("cardExpiryVali").style.display = "none";
+        window.cardExpiry = true;
+    }
+    else {
+        document.getElementById("cardExpiryVali").style.display = "block";
+        document.getElementById("cardExpiryVali").innerHTML = "Expired card";
+        window.cardExpiry = false;
+    }
+    console.log(window.cardExpiry);
+    buttonRegi();
+}
+
 function buttonRegi() {
-    if (window.email && window.password && window.confirm && window.postcode && window.cardNumber) {
+    if (window.email && window.password && window.confirm && window.postcode && window.cardNumber && window.cardExpiry) {
         console.log("yes");
-        document.getElementsByName("registerButton")[0].disabled = false;
+        document.getElementById("registerButton").disabled = false;
     }
     else {
         console.log("no");
-        document.getElementsByName("registerButton")[0].disabled = true;
+        document.getElementById("registerButton").disabled = true;
     }
 }
 
 function validateEmailLogin() {
-    var email = document.getElementsByName("email")[1].value;
+    var email = document.getElementById("emailLogin").value;
     var reg = /[a-zA-Z0-9]*@[.a-zA-Z0-9]*mq.edu.au|[a-zA-Z0-9]*@[.a-zA-Z0-9]*hit.edu.cn/;
     if (reg.test(email)) {
-        document.getElementsByName("emailLoginVali")[0].style.display = "none";
+        document.getElementById("emailLoginVali").style.display = "none";
         window.emailLogin = true;
     }
     else {
-        document.getElementsByName("emailLoginVali")[0].style.display = "block";
-        document.getElementsByName("emailLoginVali")[0].innerHTML = "illegal email";
+        document.getElementById("emailLoginVali").style.display = "block";
+        document.getElementById("emailLoginVali").innerHTML = "Illegal email";
         window.emailLogin = false;
     }
     console.log(window.email);
@@ -110,15 +126,16 @@ function validateEmailLogin() {
 function buttonLogin() {
     if (window.emailLogin) {
         console.log("yes");
-        document.getElementsByName("loginButton")[0].disabled = false;
+        document.getElementById("loginButton").disabled = false;
     }
     else {
         console.log("no");
-        document.getElementsByName("loginButton")[0].disabled = true;
+        document.getElementById("loginButton").disabled = true;
     }
 }
 
 window.onload = function () {
+
     validateEmail();
     validatePassword();
     validateConfirm();

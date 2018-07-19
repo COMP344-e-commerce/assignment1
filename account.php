@@ -10,18 +10,20 @@
 <div>
     <form method="post" action="register.php" id="registerForm">
         <label>Email: </label>
-        <input name="email" type="email" onchange="validateEmail();"><br>
-        <div name="emailVali"></div>
+        <input id="email" name="email" type="email" onchange="validateEmail();"><br>
+        <div id="emailVali"></div>
         <label>New password: </label>
-        <input name="newPassword" type="password" maxlength="6" minlength="6" onchange="validatePassword();validateConfirm();"><br>
-        <div name="newPasswordVali"></div>
+        <input id="newPassword" name="newPassword" type="password" maxlength="6" minlength="6"
+               onchange="validatePassword();validateConfirm();"><br>
+        <div id="newPasswordVali" name="newPasswordVali"></div>
         <label>Confirm password: </label>
-        <input name="confirmPassword" type="password" maxlength="6" minlength="6" onchange="validateConfirm();"><br>
-        <div name="confirmPasswordVali"></div>
+        <input id="confirmPassword" name="confirmPassword" type="password" maxlength="6" minlength="6"
+               onchange="validateConfirm();"><br>
+        <div id="confirmPasswordVali" name="confirmPasswordVali"></div>
         <label>First Name: </label>
-        <input name="firstName" type="text"><br>
+        <input id="firstName" name="firstName" type="text"><br>
         <label>Last Name: </label>
-        <input name="lastName" type="text"><br>
+        <input id="lastName" name="lastName" type="text"><br>
         <label>Country: </label>
         <select name="country">
             <?php
@@ -39,25 +41,26 @@
         <label>Street address: </label>
         <input name="address" type="text"><br>
         <label>Postcode: </label>
-        <input name="postcode" type="text" pattern="[0-9.]+" minlength="4" maxlength="4" onchange="validatePostcode();"><br>
-        <div name="postcodeVali"></div>
+        <input id="postcode" name="postcode" type="text" pattern="[0-9.]+" minlength="4" maxlength="4" onchange="validatePostcode();"><br>
+        <div id="postcodeVali" name="postcodeVali"></div>
         <label>Credit card number: </label>
-        <input name="cardNumber" type="number" onchange="validateCardNumber();"><br>
-        <div name="cardNumberVali"></div>
+        <input id="cardNumber" name="cardNumber" type="text" maxlength="10" minlength="10" onchange="validateCardNumber();"><br>
+        <div id="cardNumberVali" name="cardNumberVali"></div>
         <label>Credit card expiry: </label>
-        <input name="cardExpiry" type="month" /><br>
-        <input type="submit" value="Register" name="registerButton" >
+        <input id="cardExpiry" name="cardExpiry" type="month" onchange="validateCardExpiry();"/><br>
+        <div id="cardExpiryVali"></div>
+        <input type="submit" value="Register" id="registerButton" name="registerButton">
     </form>
 </div>
 <h1>Login</h1>
 <div>
     <form method="post" action="login.php" id="loginForm">
         <label>Email: </label>
-        <input name="email" onchange="validateEmailLogin();"><br>
-        <div name="emailLoginVali"></div>
+        <input id="emailLogin" name="emailLogin" onchange="validateEmailLogin();"><br>
+        <div id="emailLoginVali" name="emailLoginVali"></div>
         <label>Password: </label>
         <input name="password" type="password"><br>
-        <input type="submit" value="Sign in" name="loginButton">
+        <input type="submit" value="Sign in" id="loginButton" name="loginButton">
     </form>
 </div>
 <?php include("footer.html"); ?>

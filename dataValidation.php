@@ -52,7 +52,7 @@ function validateCountry($country, $countries)
             return true;
         }
     }
-    return $country . " is not supported at the moment.";
+    return "Entered country is not supported at the moment.";
 }
 
 function validateName($name, $part = "first name")
